@@ -31,8 +31,8 @@ def sample():
             private void multiArgMethod(String id, String age) {
             }
         }"""
-    class_info = ClassInfo(code)
-    body_json = json.loads(json.dumps(class_info, default=(lambda o: o.__dict__)))
+    class_info_list = [ClassInfo(code)]
+    body_json = json.loads(json.dumps(class_info_list, default=(lambda o: o.__dict__)))
 
     return jsonify(body_json)
 
@@ -51,4 +51,3 @@ def analyze():
 
 if __name__ == '__main__':
     app.run()
-

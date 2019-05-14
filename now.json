@@ -2,5 +2,5 @@
   "version": 2,
   "builds": [{ "src": "*.py", "use": "@now/python"}],
   "routes": [{ "src": "(.*)", "dest": "index.py" }],
-  "alias": "midoribi-line"
+  "alias": "java-parser"
 }
