@@ -14,31 +14,32 @@ def catch_all(path):
 
 @app.route('/sample')
 def sample():
-    class_sample = """public class TestClass {
-            private String name;
-            private String id = "idid";
-            public static int age;
+    class_sample = """
+public class TestClass {
+    private String name;
+    private String id = "idid";
+    public static int age;
 
-            public TestClass(String name) {
-                this.name = name;
-            }
-            public String normalMethod(){
-                return "Engineer";
-            }
-            public static MyClass classMethod(MyClass myClass) {
-                return myClass;
-            }
-            private void multiArgMethod(String id, String age) {
-            }
-        }"""
+    public TestClass(String name) {
+        this.name = name;
+    }
+    public String normalMethod(){
+        return "Engineer";
+    }
+    public static MyClass classMethod(MyClass myClass) {
+        return myClass;
+    }
+    private void multiArgMethod(String id, String age) {
+    }
+}"""
     interface_sample = '''
-        public interface SampleInterface {
-            public String normal();
-            public void arg(String name);
-            public void args(String name, int age);
-        }
+public interface SampleInterface {
+    public String normal();
+    public void arg(String name);
+    public void args(String name, int age);
+}
     '''
-    class_info_list = [ClassInfo(class_sample)]
+    class_info_list = [ClassInfo(class_sample), ClassInfo(interface_sample)]
     body_json = json.loads(json.dumps(class_info_list, default=(lambda o: o.__dict__)))
 
     return jsonify(body_json)
