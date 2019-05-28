@@ -1,7 +1,7 @@
 import json
 import base64
 
-from ClassInfo import ClassInfo
+from class_info import ClassInfo
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ def catch_all(path):
 
 @app.route('/sample')
 def sample():
-    code = """public class TestClass {
+    class_sample = """public class TestClass {
             private String name;
             private String id = "idid";
             public static int age;
@@ -31,7 +31,14 @@ def sample():
             private void multiArgMethod(String id, String age) {
             }
         }"""
-    class_info_list = [ClassInfo(code)]
+    interface_sample = '''
+        public interface SampleInterface {
+            public String normal();
+            public void arg(String name);
+            public void args(String name, int age);
+        }
+    '''
+    class_info_list = [ClassInfo(class_sample)]
     body_json = json.loads(json.dumps(class_info_list, default=(lambda o: o.__dict__)))
 
     return jsonify(body_json)

@@ -1,16 +1,11 @@
 import re
 
-from ArgInfo import ArgInfo
+from arg_info import ArgInfo
+from parse_regex import METHOD_LINE
 
 
 class MethodInfo:
-    # (public|private|protected)( +static)?(?: +(.*))? +(\w+) *\((.*)\)
-    _ACCESS = r' *(public|private|protected)'
-    _STATIC = r'( +static)?'
-    _NAME = r' +(\w+) *'
-    _ARG = r'\((.*)\)'
-    _OTHER = r'(?: +(.*))?'
-    _RE_PATTERN = re.compile(_ACCESS + _STATIC + _OTHER + _NAME + _ARG)
+    _METHOD_LINE_PATTERN = re.compile(METHOD_LINE)
 
     def __init__(self, name: str, return_type: str, access_modifier: str, is_class_method: bool, arg_list: []):
         self.name = name
@@ -21,7 +16,7 @@ class MethodInfo:
 
     @staticmethod
     def _str_to_this(line: str):
-        match = MethodInfo._RE_PATTERN.match(line)
+        match = MethodInfo._METHOD_LINE_PATTERN.match(line)
 
         name = match.group(4)
         return_type = match.group(3)
@@ -39,4 +34,4 @@ class MethodInfo:
     @staticmethod
     def _code_extra_method_line(code: str) -> []:
         code_list = code.split('\n')
-        return list(filter(MethodInfo._RE_PATTERN.match, code_list))
+        return list(filter(MethodInfo._METHOD_LINE_PATTERN.match, code_list))

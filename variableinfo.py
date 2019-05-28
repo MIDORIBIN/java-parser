@@ -1,11 +1,9 @@
 import re
+from parse_regex import VARIABLE_LINE
 
 
 class VariableInfo:
-    _ACCESS = r' *(public|private|protected)'
-    _STATIC = r'( +static)?'
-    _WARD = r' +(\w+)'
-    _RE_PATTERN = re.compile(_ACCESS + _STATIC + _WARD + _WARD + r'(.*);')
+    _RE_PATTERN = re.compile(VARIABLE_LINE)
 
     def __init__(self, access_modifier: str, is_class_variable: bool, variable_type: str, name: str):
         self.access_modifier = access_modifier
