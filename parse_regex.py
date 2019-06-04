@@ -13,8 +13,14 @@ CLASS_NAME_LINE = r'public' + ONE_BLANK + CLASS_NAME + ONE_BLANK + WARD
 # *public | private | protected
 ACCESS_MODIFIER_LINE = ZERO_BLANK + ACCESS_MODIFIER
 
+# ( *= *(\w+))?
+VARIABLE_VALUE = '(' + ZERO_BLANK + '=' + ZERO_BLANK + '(.+))?'
+
 # *(public | private | protected)(+static)? +(\w+) + (\w+)(.*);
-VARIABLE_LINE = ZERO_BLANK + '(' + ACCESS_MODIFIER + ')' + STATIC + ONE_BLANK + WARD + ONE_BLANK + WARD + '([^\(]*);'
+# *(public | private | protected)(+static)? +(\w+) + (\w+)( *= *(\w+))?;
+# VARIABLE_LINE = ZERO_BLANK + '(' + ACCESS_MODIFIER + ')' + STATIC + ONE_BLANK + WARD + ONE_BLANK + WARD + '([^\(]*);'
+VARIABLE_LINE = ZERO_BLANK + '(' + ACCESS_MODIFIER + ')' + STATIC + ONE_BLANK + WARD + ONE_BLANK + WARD + VARIABLE_VALUE + ';'
 
 # *(public | private | protected)(+static)?(?: +(.*))? +(\w+) *\((.*)\)
 METHOD_LINE = ZERO_BLANK + '(' + ACCESS_MODIFIER + ')' + STATIC + ANYTHING + ONE_BLANK + WARD + ZERO_BLANK + PARENTHESES
+
