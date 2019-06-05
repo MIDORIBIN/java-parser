@@ -18,11 +18,11 @@ class MethodInfo:
     def _str_to_this(line: str):
         match = MethodInfo._METHOD_LINE_PATTERN.match(line)
 
-        name = match.group(4)
-        return_type = match.group(3)
+        name = match.group(5)
+        return_type = match.group(4)
         access_modifier = match.group(1)
         is_static = True if match.group(2) else False
-        arg_list = ArgInfo.multi_str_to_list(match.group(5))
+        arg_list = ArgInfo.multi_str_to_list(match.group(6))
 
         return MethodInfo(name, return_type, access_modifier, is_static, arg_list)
 
