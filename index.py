@@ -18,6 +18,7 @@ def sample():
 public class TestClass {
     private String name;
     private String id = "idid";
+    private List<String> list = new ArrayList<>();
     public static int age;
 
     public TestClass(String name) {
@@ -31,12 +32,15 @@ public class TestClass {
     }
     private void multiArgMethod(String id, String age) {
     }
+    private List<String> returnList(String id, String age) {
+    }
 }"""
     interface_sample = '''
 public interface SampleInterface {
     public String normal();
     public void arg(String name);
     public void args(String name, int age);
+    public List<String> returnList();
 }
     '''
     class_info_list = [ClassInfo(class_sample), ClassInfo(interface_sample)]
