@@ -1,6 +1,7 @@
 import json
 import re
 
+from code_sample import interface_sample, class_sample
 from method_info import MethodInfo
 from variableinfo import VariableInfo
 from parse_regex import CLASS_NAME_LINE, ACCESS_MODIFIER_LINE
@@ -38,36 +39,6 @@ class ClassInfo:
 
 
 def main():
-    interface_sample = '''
-public interface SampleInterface {
-    public String normal();
-    public void arg(String name);
-    public void args(String name, int age);
-    public List<String> returnList(List<String> list);
-}
-    '''
-    class_sample = """
-public class TestClass {
-    private String name;
-    private String id = "idid";
-    private List<String> list = new ArrayList<>();
-    public static int age;
-
-    public TestClass(String name) {
-        this.name = name;
-    }
-    public String normalMethod(){
-        return "Engineer";
-    }
-    public static MyClass classMethod(MyClass myClass) {
-        return myClass;
-    }
-    private void multiArgMethod(String id, String age) {
-    }
-    private List<String> returnList(String id, String age) {
-    }
-}"""
-
     print(json.dumps(ClassInfo(interface_sample), default=(lambda o: o.__dict__), indent=4))
     print('==========================================================================================')
     print(json.dumps(ClassInfo(class_sample), default=(lambda o: o.__dict__), indent=4))
